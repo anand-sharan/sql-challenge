@@ -1,0 +1,43 @@
+# Logical (with relationships)
+Department
+-
+dept_no PK
+dept_name
+-
+
+Department_Manager
+-
+dept_no PK FK >- Department.dept_no
+emp_no PK FK - Employee.emp_no
+-
+
+Employee
+-
+emp_no PK
+emp_title_id PK FK >- Title.title_id
+birth_date
+first_name
+last_name
+sex
+hire_date
+-
+
+Title
+-
+title_id PK
+title
+-
+
+Department_Employee_Junction
+-
+dept_no PK FK >- Department.dept_no
+emp_no PK FK - Employee.emp_no
+-
+-
+
+Salary
+-
+emp_no PK FK - Employee.emp_no
+salary
+-
+

@@ -1,0 +1,24 @@
+# Conceptual (with relationships)
+Department
+-
+
+Department_Manager
+rel Department
+rel Employee
+-
+
+Employee
+-
+
+Title
+rel Employee
+-
+
+Department_Employee_Junction
+rel Employee
+rel Department
+-
+
+Salary
+rel Employee
+
