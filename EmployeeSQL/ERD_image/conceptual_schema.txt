@@ -2,7 +2,7 @@
 Department
 -
 
-Department_Manager
+Department_Manager_Junction
 rel Department
 rel Employee
 -

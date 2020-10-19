@@ -3,12 +3,18 @@ Department
 -
 dept_no PK
 dept_name
+activebool
+create_date
+last_update
 -
 
-Department_Manager
+Department_Manager_Junction
 -
 dept_no PK FK >- Department.dept_no
 emp_no PK FK - Employee.emp_no
+activebool
+create_date
+last_update
 -
 
 Employee
@@ -20,24 +26,34 @@ first_name
 last_name
 sex
 hire_date
+activebool
+create_date
+last_update
 -
 
 Title
 -
 title_id PK
 title
+activebool
+create_date
+last_update
 -
 
 Department_Employee_Junction
 -
 dept_no PK FK >- Department.dept_no
 emp_no PK FK - Employee.emp_no
--
+activebool
+create_date
+last_update
 -
 
 Salary
 -
 emp_no PK FK - Employee.emp_no
 salary
+activebool
+create_date
+last_update
 -
-

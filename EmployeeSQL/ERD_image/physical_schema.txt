@@ -3,12 +3,18 @@ Department
 -
 dept_no VARCHAR(6) PK
 dept_name VARCHAR(255)
+activebool BOOLEAN
+create_date DATE
+last_update TIMESTAMP
 -
 
-Department_Manager
+Department_Manager_Junction
 -
 dept_no VARCHAR(6) PK FK >- Department.dept_no
 emp_no INTEGER PK FK - Employee.emp_no
+activebool BOOLEAN
+create_date DATE
+last_update TIMESTAMP
 -
 
 Employee
@@ -20,24 +26,35 @@ first_name VARCHAR(255)
 last_name VARCHAR(255)
 sex VARCHAR(6)
 hire_date DATE
+activebool BOOLEAN
+create_date DATE
+last_update TIMESTAMP
 -
 
 Title
 -
 title_id VARCHAR(6) PK
 title VARCHAR(255)
+activebool BOOLEAN
+create_date DATE
+last_update TIMESTAMP
 -
 
 Department_Employee_Junction
 -
 dept_no VARCHAR(6) PK FK >- Department.dept_no
 emp_no INTEGER PK FK - Employee.emp_no
--
+activebool BOOLEAN
+create_date DATE
+last_update TIMESTAMP
 -
 
 Salary
 -
 emp_no INTEGER PK FK - Employee.emp_no
 salary NUMERIC
+activebool BOOLEAN
+create_date DATE
+last_update TIMESTAMP
 -
 
