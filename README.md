@@ -34,15 +34,15 @@ Note: You may hear the term "Data Modeling" in place of "Data Engineering," but 
 
     Conceptual ERD:
 
-    ![EmployeeSQL\ERD_image\ERD_Conceptual.png](ERD_Conceptual.png)
+    ![ERD_Conceptual.png](ERD_Conceptual.png)
 
     Logical ERD:
 
-    ![EmployeeSQL\ERD_image\ERD_Logical.png](ERD_Logical.png)
+    ![ERD_Logical.png](ERD_Logical.png)
 
     Physical ERD:
 
-    ![EmployeeSQL\ERD_image\ERD_Physical.png](ERD_Physical.png)
+    ![ERD_Physical.png](ERD_Physical.png)
 
 3. I have used the tool [http://www.quickdatabasediagrams.com](http://www.quickdatabasediagrams.com) to create the diagrams.
 
@@ -142,11 +142,11 @@ Once you have a complete database, please execute the queries in the attached fi
 
 2. Create a histogram to visualize the most common salary ranges for employees.
 
-      ![EmployeePy/Images/CommonSalaryRanges.png](CommonSalaryRanges.png)
+      ![CommonSalaryRanges.png](CommonSalaryRanges.png)
 
 3. Create a bar chart of average salary by title.
 
-      ![EmployeePy/Images/ChartAverageSalaryByTitle.png](ChartAverageSalaryByTitle.png)
+      ![ChartAverageSalaryByTitle.png](ChartAverageSalaryByTitle.png)
 
 ## Epilogue
 
