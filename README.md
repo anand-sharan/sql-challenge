@@ -146,7 +146,7 @@ Once you have a complete database, please execute the queries in the attached fi
 
       ![CommonSalaryRanges.png](CommonSalaryRanges.png)
 
-3. Create a bar chart of average salary by title.
+3. Create a bar chart of average salary by title using Pandas.
 
       ![PandasAverageSalaryByTitle.png](PandasAverageSalaryByTitle.png)
 
