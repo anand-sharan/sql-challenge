@@ -138,7 +138,9 @@ Once you have a complete database, please execute the queries in the attached fi
 
 ## Bonus (Optional) - Solved
 
-1. Please check the Jupyter Notebook at location EmployeePy/employee.ipynb to view the solution to the Bonus
+1. Please check the Jupyter Notebook at below location to view the solution to the Bonus solution:
+
+    `EmployeePy/employee.ipynb`
 
 2. Create a histogram to visualize the most common salary ranges for employees.
 
