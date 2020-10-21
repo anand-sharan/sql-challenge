@@ -1,8 +1,8 @@
-# SQL Homework - Employee Database: A Mystery in Two Parts
+# SQL Homework - Employee Database: A Mystery in Two Parts (Solved)
 
 ![sql.png](sql.png)
 
-## Background
+## Background - Solved
 
 It is a beautiful spring day, and it is two weeks since you have been hired as a new data engineer at Pewlett Hackard. Your first major task is a research project on employees of the corporation from the 1980s and 1990s. All that remain of the database of employees from that period are six CSV files.
 
@@ -14,36 +14,111 @@ In this assignment, you will design the tables to hold data in the CSVs, import 
 
 Note: You may hear the term "Data Modeling" in place of "Data Engineering," but they are the same terms. Data Engineering is the more modern wording instead of Data Modeling.
 
-### Before You Begin
+## Before You Begin - Solved
 
-1. Create a new repository for this project called `sql-challenge`. **Do not add this homework to an existing repository**.
+1. Please check the homework solution to SQL challenge in for this in GIT HUB repository project called `sql-challenge`.
 
-2. Clone the new repository to your computer.
+2. Please find the link to this repository from GIT HUB:
 
-3. Inside your local git repository, create a directory for the SQL challenge. Use a folder name to correspond to the challenge: **EmployeeSQL**.
+    https://github.com/anand-sharan/sql-challenge
 
-4. Add your files to this folder.
+3. Clone the new repository to your computer to view the solution.
 
-5. Push the above changes to GitHub.
+# Instructions to check the solution
 
-## Instructions
+### Data Modeling - Solved
 
-#### Data Modeling
+1. Please check the following images to view the ERD digrams of the tables which were sketched after inspectes the CSVs and sketch out an ERD of the tables.
 
-Inspect the CSVs and sketch out an ERD of the tables. Feel free to use a tool like [http://www.quickdatabasediagrams.com](http://www.quickdatabasediagrams.com).
+2. Please check the following images to view:
 
-#### Data Engineering
+    Conceptual ERD:
 
-* Use the information you have to create a table schema for each of the six CSV files. Remember to specify data types, primary keys, foreign keys, and other constraints.
+    ![EmployeeSQL/ERD_image/ERD_Conceptual.png](ERD_Conceptual.png)
 
-  * For the primary keys check to see if the column is unique, otherwise create a [composite key](https://en.wikipedia.org/wiki/Compound_key). Which takes to primary keys in order to uniquely identify a row.
-  * Be sure to create tables in the correct order to handle foreign keys.
+    Logical ERD:
 
-* Import each CSV file into the corresponding SQL table. **Note** be sure to import the data in the same order that the tables were created and account for the headers when importing to avoid errors.
+    ![EmployeeSQL/ERD_image/ERD_Logical.png](ERD_Logical.png)
 
-#### Data Analysis
+    Physical ERD:
 
-Once you have a complete database, do the following:
+    ![EmployeeSQL/ERD_image/ERD_Physical.png](ERD_Physical.png)
+
+3. I have used the tool [http://www.quickdatabasediagrams.com](http://www.quickdatabasediagrams.com) to create the diagrams.
+
+4. The following files contain the diagraming code used to create the diagram:
+
+    Conceptual ERD diagraming code:
+      EmployeeSQL/ERD_image/conceptual_schema.txt
+
+    Logical ERD diagraming code:
+      EmployeeSQL/ERD_image/logical_schema.txt
+
+    Logical ERD diagraming code:
+      EmployeeSQL/ERD_image/physical_schema.txt
+
+### Data Engineering - Solved
+
+#### Using the information on the csv files and ERD digrams, please check the following schema file containing the table schema for each of the six CSV files. I have specified data types, primary keys, foreign keys, and other constraints.
+      EmployeeSQL/Resources/sql_challenge_schema.sql
+
+Tables
+  1. department
+  2. title
+  3. employee
+  4. salary
+  5. department_manager_junction
+  6. department_employee_junction
+
+
+#### Primary keys and Composite primary keys
+1. department table's primary key is department_pkey
+2. title table's primary key is title_pkey
+3. employee table's primary key is employee_pkey
+4. department_manager_junction table's composite primary key is department_manager_junction_pkey
+5. department_employee_junction table's composite primary key is department_employee_junction_pkey
+
+#### Foreign primary keys:
+1. title to employee forgein key is employee_title_id_fkey
+2. department to department_manager_junction forgein key is department_manager_junction_dept_no_fkey
+3. employee to department_manager_junction forgein key is department_manager_junction_emp_no_fkey
+4. department to department_employee_junction forgein key is department_employee_junction_dept_no_fkey and 
+5. employee to department_employee_junction forgein key is department_employee_junction_emp_no_fkey
+
+#### Please find the correct order of table creation to handle foreign keys:
+Tables
+  1. department
+  2. title
+  3. employee
+  4. salary
+  5. department_manager_junction
+  6. department_employee_junction
+
+* Be sure to create tables in the correct order to handle foreign keys.
+
+Tables
+  1. department
+  2. title
+  3. employee
+  4. salary
+  5. department_manager_junction
+  6. department_employee_junction
+
+* Import each CSV file into the corresponding SQL table. **Note** be sure to import the data in the same order that the tables were created and account for the headers when importing to avoid errors. Please find location and order of the csv files
+      1. EmployeeSQL/data/departments.csv
+      2. EmployeeSQL/data/titles.csv
+      3. EmployeeSQL/data/employees.csv
+      4. EmployeeSQL/data/salaries.csv
+      5. EmployeeSQL/data/dept_manager.csv
+      6. EmployeeSQL/data/dept_emp.csv
+
+
+#### Data Analysis - Solved
+
+Please check the following SQL file containing the solved queries to answer the data analysis questions:
+      EmployeeSQL/Resources/solved_queries.sql
+
+Once you have a complete database, please execute the queries in the attached files do the following:
 
 1. List the following details of each employee: employee number, last name, first name, sex, and salary.
 
@@ -61,25 +136,17 @@ Once you have a complete database, do the following:
 
 8. In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
 
-## Bonus (Optional)
+## Bonus (Optional) - Solved
 
-As you examine the data, you are overcome with a creeping suspicion that the dataset is fake. You surmise that your boss handed you spurious data in order to test the data engineering skills of a new employee. To confirm your hunch, you decide to take the following steps to generate a visualization of the data, with which you will confront your boss:
-
-1. Import the SQL database into Pandas. (Yes, you could read the CSVs directly in Pandas, but you are, after all, trying to prove your technical mettle.) This step may require some research. Feel free to use the code below to get started. Be sure to make any necessary modifications for your username, password, host, port, and database name:
-
-   ```sql
-   from sqlalchemy import create_engine
-   engine = create_engine('postgresql://localhost:5432/<your_db_name>')
-   connection = engine.connect()
-   ```
-
-* Consult [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/latest/core/engines.html#postgresql) for more information.
-
-* If using a password, do not upload your password to your GitHub repository. See [https://www.youtube.com/watch?v=2uaTPmNvH0I](https://www.youtube.com/watch?v=2uaTPmNvH0I) and [https://help.github.com/en/github/using-git/ignoring-files](https://help.github.com/en/github/using-git/ignoring-files) for more information.
+1. Please check the Jupyter Notebook at location EmployeePy/employee.ipynb to view the solution to the Bonus
 
 2. Create a histogram to visualize the most common salary ranges for employees.
 
+      ![EmployeePy/Images/CommonSalaryRanges.png](CommonSalaryRanges.png)
+
 3. Create a bar chart of average salary by title.
+
+      ![EmployeePy/Images/ChartAverageSalaryByTitle.png](ChartAverageSalaryByTitle.png)
 
 ## Epilogue
 

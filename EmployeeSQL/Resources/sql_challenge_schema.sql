@@ -39,25 +39,6 @@ DROP TABLE IF EXISTS salary;
 DROP TABLE IF EXISTS department;
 DROP TABLE IF EXISTS employee;
 DROP TABLE IF EXISTS title;
-DROP FUNCTION IF EXISTS last_updated;
-
---
--- Name: last_updated(); Type: FUNCTION; Schema: public; Owner: postgres
---
-
-CREATE FUNCTION last_updated() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
-BEGIN
-    NEW.last_update = CURRENT_TIMESTAMP;
-    RETURN NEW;
-END $$;
-
-
-ALTER FUNCTION public.last_updated() OWNER TO postgres;
-
-
-
 
 --
 -- Name: department; Type: TABLE; Schema: public; Owner: postgres
@@ -65,10 +46,7 @@ ALTER FUNCTION public.last_updated() OWNER TO postgres;
 
 CREATE TABLE department (
     dept_no     varchar(6)           CONSTRAINT department_pkey PRIMARY KEY UNIQUE NOT NULL ,
-    dept_name   varchar(255)         NOT NULL,
-    activebool  boolean DEFAULT true NOT NULL,
-    create_date date DEFAULT ('now'::text)::date NOT NULL,
-    last_update timestamp with time zone DEFAULT now()
+    dept_name   varchar(255)         NOT NULL
 );
 
 ALTER TABLE department OWNER TO postgres;
@@ -79,10 +57,7 @@ ALTER TABLE department OWNER TO postgres;
 
 CREATE TABLE title (
     title_id    varchar(6)           CONSTRAINT title_pkey PRIMARY KEY UNIQUE NOT NULL,
-    title       varchar(255)         NOT NULL,
-    activebool  boolean DEFAULT true NOT NULL,
-    create_date date DEFAULT ('now'::text)::date NOT NULL,
-    last_update timestamp with time zone DEFAULT now()
+    title       varchar(255)         NOT NULL
 );
 
 ALTER TABLE title OWNER TO postgres;
@@ -99,9 +74,6 @@ CREATE TABLE employee (
     last_name    varchar(255) NOT NULL,
     sex          varchar(6)   NOT NULL,
     hire_date    date         NOT NULL,
-    activebool   boolean DEFAULT true NOT NULL,
-    create_date  date DEFAULT ('now'::text)::date NOT NULL,
-    last_update  timestamp with time zone DEFAULT now(),
     CONSTRAINT employee_title_id_fkey FOREIGN KEY (emp_title_id) REFERENCES title(title_id) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
@@ -116,11 +88,8 @@ ALTER TABLE ONLY employee
 --
 
 CREATE TABLE department_manager_junction (
-    dept_no       varchar(6) UNIQUE NOT NULL,
-    emp_no        integer    UNIQUE NOT NULL,
-    activebool    boolean DEFAULT true NOT NULL,
-    create_date   date DEFAULT ('now'::text)::date NOT NULL,
-    last_update   timestamp with time zone DEFAULT now(),
+    dept_no       varchar(6) NOT NULL,
+    emp_no        integer    NOT NULL,
     CONSTRAINT department_manager_junction_dept_no_fkey FOREIGN KEY (dept_no) REFERENCES department(dept_no) ON UPDATE CASCADE ON DELETE RESTRICT,
     CONSTRAINT department_manager_junction_emp_no_fkey FOREIGN KEY (emp_no)  REFERENCES employee(emp_no)    ON UPDATE CASCADE ON DELETE RESTRICT
 );
@@ -135,11 +104,8 @@ ALTER TABLE ONLY department_manager_junction
 --
 
 CREATE TABLE department_employee_junction (
-    dept_no       varchar(6) UNIQUE NOT NULL,
-    emp_no        integer    UNIQUE NOT NULL,
-    activebool    boolean DEFAULT true NOT NULL,
-    create_date   date DEFAULT ('now'::text)::date NOT NULL,
-    last_update   timestamp with time zone DEFAULT now(),
+    emp_no        integer    NOT NULL,	
+    dept_no       varchar(6) NOT NULL,
     CONSTRAINT department_employee_junction_dept_no_fkey FOREIGN KEY (dept_no) REFERENCES department(dept_no),
     CONSTRAINT department_employee_junction_emp_no_fkey FOREIGN KEY (emp_no)  REFERENCES employee(emp_no) ON UPDATE CASCADE ON DELETE RESTRICT
 );
@@ -156,9 +122,6 @@ ALTER TABLE ONLY department_employee_junction
 CREATE TABLE salary (
     emp_no        integer      CONSTRAINT salary_pkey PRIMARY KEY,
     salary        numeric      NOT NULL,
-    activebool    boolean DEFAULT true NOT NULL,
-    create_date   date DEFAULT ('now'::text)::date NOT NULL,
-    last_update   timestamp with time zone DEFAULT now(),
     CONSTRAINT salary_emp_no_fkey FOREIGN KEY (emp_no)  REFERENCES employee(emp_no) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
@@ -202,39 +165,4 @@ CREATE INDEX idx_fk_department_employee_junction_dept_no_emp_no ON department_em
 
 CREATE INDEX idx_fk_salary_emp_no ON salary USING btree (emp_no);
 
---
--- Name: department last_updated; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER last_updated BEFORE UPDATE ON department FOR EACH ROW EXECUTE PROCEDURE last_updated();
-
---
--- Name: title last_updated; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER last_updated BEFORE UPDATE ON title FOR EACH ROW EXECUTE PROCEDURE last_updated();
-
---
--- Name: employee last_updated; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER last_updated BEFORE UPDATE ON employee FOR EACH ROW EXECUTE PROCEDURE last_updated();
-
---
--- Name: department_manager_junction last_updated; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER last_updated BEFORE UPDATE ON department_manager_junction FOR EACH ROW EXECUTE PROCEDURE last_updated();
-
---
--- Name: department_employee_junction last_updated; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER last_updated BEFORE UPDATE ON department_employee_junction FOR EACH ROW EXECUTE PROCEDURE last_updated();
-
---
--- Name: salary last_updated; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER last_updated BEFORE UPDATE ON salary FOR EACH ROW EXECUTE PROCEDURE last_updated();
 
