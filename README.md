@@ -54,7 +54,7 @@ Note: You may hear the term "Data Modeling" in place of "Data Engineering," but 
     Logical ERD diagraming code:
       `EmployeeSQL/ERD_image/logical_schema.txt`
 
-    Logical ERD diagraming code:
+    Physical ERD diagraming code:
       `EmployeeSQL/ERD_image/physical_schema.txt`
 
 ### Data Engineering - Solved
