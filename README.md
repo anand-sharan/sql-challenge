@@ -144,7 +144,7 @@ Once you have a complete database, please execute the queries in the attached fi
 
 2. Create a histogram to visualize the most common salary ranges for employees.
 
-      ![CommonSalaryRanges.png](CommonSalaryRanges.png)
+      ![PandasHistChartCommonSalaryRanges.png](PandasHistChartCommonSalaryRanges.png)
 
 3. Create a bar chart of average salary by title using Pandas.
 
