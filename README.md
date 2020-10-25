@@ -1,4 +1,4 @@
-# SQL Homework - Employee Database: A Mystery in Two Parts (Solved)
+# SQL Homework - Employee Database: A Mystery in Two Parts (Solved )
 
 ![sql.png](sql.png)
 
